@@ -1,0 +1,3 @@
+This folder contains code for music visualizer app .
+This is done by D3 js 
+Link to tutorial : https://www.bignerdranch.com/blog/music-visualization-with-d3-js/

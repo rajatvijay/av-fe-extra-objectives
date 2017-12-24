@@ -1,0 +1,2 @@
+This folder shows the code for virtual drum kit with audio effects using tuna.js 
+Link to tutorial : https://drive.google.com/file/d/0B7vme9WYVBzWb0xHTmpIWmU0R0k/view

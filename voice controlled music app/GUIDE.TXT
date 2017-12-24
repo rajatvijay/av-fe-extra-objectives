@@ -1,0 +1,70 @@
+I completed this project by taking reference from sample project on https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API#Examples
+Let me cover it in short
+1.Boiler plate code //Isse copy karna hai bas
+var result
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+THE ABOVE CODE IS USED TO INITALIZER SpeechRecognition
+
+2.
+
+var options = ['play the song', 'pause the song', 'loop through song', 'shuffle between songs', 'next song', 'previous song', 'show visualizer'];
+var grammar = '#JSGF V1.0; grammar options; public <option> = ' + options.join(' | ') + ' ;'
+
+
+THE ARRAY OPTIONS IS THE ARRAY WHERE WE SPECIFY WHICH WORDS ARE WE GOING TO USE WHEN WE WILL SPEAK
+THE SECOND VARIABLE GRAMMER IS AGAIN BOILER PLATE CODE WHICH I PICKED FROM THERE DOCUMENTATION IT'S ROLE IS TO COMBINE THE WORDS GIVEN BY US TO PREDIFENED STRING AND CONCATINATE
+
+3.
+var recognition = new SpeechRecognition();
+var speechRecognitionList = new SpeechGrammarList();
+speechRecognitionList.addFromString(grammar, 1);
+recognition.grammars = speechRecognitionList;
+//recognition.continuous = false;
+recognition.lang = 'en-US';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
+
+AGAIN BOILER PLATE CODE JUST COPY THE SAME .BASICALLY THEY ARE CREATING INSTANCES OF OBJECTS OF SpeechRecognition AND SpeechGrammarList BUT LETS NOT CONFUSE STUDENTS
+
+
+4. $('.fa-microphone').click(function() {
+    $('.fa-microphone').removeClass("active");
+    recognition.start();
+
+})
+
+
+I CREATED A MICROPHONE IN MY HTML FILE AND WHEN WE CLICK IT RECOGNITION STARTS THIS WILL ENABLE YOUR MICROPHONE AND WILL START TAKING INPUT
+
+
+5.recognition.onresult = function(event) {
+    // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+    // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+    // It has a getter so it can be accessed like an array
+    // The [last] returns the SpeechRecognitionResult at the last position.
+    // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+    // These also have getters so they can be accessed like arrays.
+    // The [0] returns the SpeechRecognitionAlternative at position 0.
+    // We then return the transcript property of the SpeechRecognitionAlternative object
+
+    var last = event.results.length - 1;
+    result = event.results[last][0].transcript;
+    console.log(result);
+}
+
+
+HERE IS THE POINT WHERE MAIN MAGIC STARTS NOW WHEN YOU SPEAK A RESULT IS CAPTURED AND STORED IN EVENT OBJECT UNDER DOUBLE RESULT ARRAY  JUST SAVE TAHT IN A VARIABLE LIKE I SAVED IT IN RESULT
+AND YUP YOU ARE GOOD TO GO AT THE END JUST APPLY SIMPLE IF CONDITIOINS
+
+if (result == "play the song") {
+    $('.fa-microphone').addClass("active");
+    var song = document.querySelector('audio');
+    $('.play-icon').removeClass('fa-play').addClass('fa-pause');
+    song.play();
+
+}
+
+WARING BE SPECIFIC WHAT YOU SAY IF YOU SAY PLAY THIS CAN TAKE IT AS CLAY SO PREFFER SPEAKING PLAY THE SONG 

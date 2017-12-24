@@ -1,0 +1,2 @@
+This folder conatins code for virtual drum kit sing vanilla js 
+Link to tutorial : (Ex: https://www.youtube.com/watch?v=VuN8qwZoego )

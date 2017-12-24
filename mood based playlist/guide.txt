@@ -1,0 +1,2 @@
+This folder contains code for mood based playkist.
+Logic : We need to create array of objects for different playlist according to mood and change the contents of playlist by clicking on mood options using different JS  functions
